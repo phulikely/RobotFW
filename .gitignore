@@ -1,0 +1,10 @@
+# Ignore Intellij's profile folder
+.idea
+# Ignore python virtual environment.
+env
+venv
+*__pycache__*
+.project
+.pydevproject
+.vscode/
+Report*

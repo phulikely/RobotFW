@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.5 on win32)" generated="20221024 15:25:15.384" rpa="false" schemaversion="3">
+<suite id="s1" name="Test Quote Type" source="D:\RobotFW\test_quote_type.robot">
+<kw name="Open Connection And Log In" type="SETUP">
+<kw name="Open Connection" library="SSHLibrary">
+<arg>${HOST}</arg>
+<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
+<status status="PASS" starttime="20221024 15:25:15.662" endtime="20221024 15:25:15.662"/>
+</kw>
+<kw name="Login" library="SSHLibrary">
+<arg>${USERNAME}</arg>
+<arg>${PASSWORD}</arg>
+<doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
+<msg timestamp="20221024 15:25:15.662" level="INFO">Logging into '172.20.107.89:22' as 'root'.</msg>
+<msg timestamp="20221024 15:25:16.919" level="INFO">Read output: Activate the web console with: systemctl enable --now cockpit.socket
+
+This system is not registered to Red Hat Insights. See https://cloud.redhat.com/
+To register this system, run: insights-client --register
+
+Last login: Mon Oct 24 15:19:12 2022 from 172.20.109.92
+[1m[7m#[m[1m[0m                                                                                [0m[m[m[J[01;32mroot@SIOS89 [34m[03:25:16 PM] [00m[37m[~][00m 
+[34m-&gt;[01;34m #[00m [K[?1h=[?2004h</msg>
+<status status="PASS" starttime="20221024 15:25:15.662" endtime="20221024 15:25:16.920"/>
+</kw>
+<status status="PASS" starttime="20221024 15:25:15.661" endtime="20221024 15:25:16.920"/>
+</kw>
+<test id="s1-t1" name="Execute Command And Verify Output" line="12">
+<kw name="Catenate" library="BuiltIn">
+<var>${makeConnectionScript}</var>
+<arg>/root/lk/make_ok_with_dolar.sql</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<msg timestamp="20221024 15:25:16.924" level="INFO">${makeConnectionScript} = /root/lk/make_ok_with_dolar.sql</msg>
+<status status="PASS" starttime="20221024 15:25:16.923" endtime="20221024 15:25:16.924"/>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<var>${sleepScript}</var>
+<arg>SEPARATOR=\n</arg>
+<arg>WAITFOR DELAY \\'00:05\\'</arg>
+<arg>go</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<msg timestamp="20221024 15:25:16.926" level="INFO">${sleepScript} = WAITFOR DELAY \'00:05\'
+go</msg>
+<status status="PASS" starttime="20221024 15:25:16.925" endtime="20221024 15:25:16.926"/>
+</kw>
+<kw name="Write To File">
+<arg>${makeConnectionScript}</arg>
+<arg>${sleepScript}</arg>
+<arg>&gt;</arg>
+<doc>Write To File.</doc>
+<kw name="Execute Command" library="SSHLibrary">
+<arg>echo $'${content}' ${OPTION} ${filePath}</arg>
+<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
+<msg timestamp="20221024 15:25:16.932" level="INFO">Executing command 'echo $'WAITFOR DELAY \'00:05\'
+go' &gt; /root/lk/make_ok_with_dolar.sql'.</msg>
+<msg timestamp="20221024 15:25:16.949" level="INFO">Command exited with return code 0.</msg>
+<status status="PASS" starttime="20221024 15:25:16.929" endtime="20221024 15:25:16.949"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221024 15:25:26.958" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20221024 15:25:16.949" endtime="20221024 15:25:26.958"/>
+</kw>
+<status status="PASS" starttime="20221024 15:25:16.927" endtime="20221024 15:25:26.959"/>
+</kw>
+<status status="PASS" starttime="20221024 15:25:16.921" endtime="20221024 15:25:26.961"/>
+</test>
+<kw name="Close All Connections" library="SSHLibrary" type="TEARDOWN">
+<doc>Closes all open connections.</doc>
+<status status="PASS" starttime="20221024 15:25:26.966" endtime="20221024 15:25:26.969"/>
+</kw>
+<status status="PASS" starttime="20221024 15:25:15.390" endtime="20221024 15:25:26.969"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test Quote Type">Test Quote Type</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
